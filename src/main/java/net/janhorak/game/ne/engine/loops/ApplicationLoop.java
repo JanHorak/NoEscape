@@ -14,7 +14,7 @@ public class ApplicationLoop extends AnimationTimer {
     private ControlManager controlManager;
     private Renderer renderer;
     private double nanoTime;
-
+    
     public ApplicationLoop(ControlManager controlManager, Renderer renderer, double nanoTime) {
         this.controlManager = controlManager;
         this.renderer = renderer;
@@ -24,16 +24,19 @@ public class ApplicationLoop extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-        if (controlManager.getUserInput().contains("P")) {
+        if (!controlManager.isPauseMode()) {
+            gameLoop.start();
+        } else {
             gameLoop.stop();
             String pointsText = "Pause";
             renderer.renderText(pointsText, 0, 50);
 
             nanoTime = System.nanoTime();
             gameLoop.updateGameTime(nanoTime);
-        } else {
-            gameLoop.start();
         }
     }
-
+    
+    public boolean isPauseMode(){
+        return controlManager.isPauseMode();
+    }
 }
