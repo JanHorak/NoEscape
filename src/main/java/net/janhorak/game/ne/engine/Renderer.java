@@ -5,6 +5,7 @@
  */
 package net.janhorak.game.ne.engine;
 
+import net.janhorak.game.ne.entities.GameSprite;
 import java.util.HashSet;
 import java.util.Set;
 import javafx.scene.canvas.Canvas;
@@ -36,11 +37,11 @@ public class Renderer {
         gc.setLineWidth(1);
     }
 
-    public void updateSpriteList(Set<GameSprite> spriteList) {
+    public void addToRenderer(Set<GameSprite> spriteList) {
         sprites.addAll(spriteList);
     }
 
-    public void updateSpriteList(GameSprite sprite) {
+    public void addToRenderer(GameSprite sprite) {
         sprites.add(sprite);
     }
 
@@ -59,5 +60,5 @@ public class Renderer {
         gc.fillText(text, width, heigt);
         gc.strokeText(text, width, heigt);
     }
-
+    
 }

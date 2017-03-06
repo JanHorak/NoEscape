@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.janhorak.game.ne.engine;
+package net.janhorak.game.ne.engine.services;
+
+import net.janhorak.game.ne.engine.GameEnvironment;
+import net.janhorak.game.ne.entities.GameSprite;
 
 /**
  *
