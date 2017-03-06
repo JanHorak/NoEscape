@@ -11,6 +11,7 @@ import net.janhorak.game.ne.engine.loops.ApplicationLoop;
 import net.janhorak.game.ne.engine.GameEnvironment;
 import net.janhorak.game.ne.engine.Renderer;
 import net.janhorak.game.ne.engine.services.ControlManager;
+import org.apache.log4j.BasicConfigurator;
 
 public class MainApp extends Application {
 
@@ -18,7 +19,6 @@ public class MainApp extends Application {
     private ApplicationLoop applicationLoop;
     double lastNanoTime = System.nanoTime();
     private ControlManager controlManager = new ControlManager();
-
     @Override
     public void start(Stage theStage) throws Exception {
         theStage.setTitle(GameEnvironment.TITLE);
@@ -47,6 +47,7 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
+        BasicConfigurator.configure();
         launch(args);
     }
 

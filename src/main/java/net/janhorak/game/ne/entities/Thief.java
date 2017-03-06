@@ -24,16 +24,16 @@ public class Thief extends GameSprite implements Controllable {
 
     @Override
     public void executeBehavior() {
-        if (cm.getUserInput().contains("LEFT")) {
+        if (cm.isPressed(ControlManager.MOVE_LEFT)) {
             this.addVelocity(-50, 0);
         }
-        if (cm.getUserInput().contains("RIGHT")) {
+        if (cm.isPressed(ControlManager.MOVE_RIGHT)) {
             this.addVelocity(50, 0);
         }
-        if (cm.getUserInput().contains("UP")) {
+        if (cm.isPressed(ControlManager.MOVE_UP)) {
             this.addVelocity(0, -50);
         }
-        if (cm.getUserInput().contains("DOWN")) {
+        if (cm.isPressed(ControlManager.MOVE_DOWN)) {
             this.addVelocity(0, 50);
         }
     }
