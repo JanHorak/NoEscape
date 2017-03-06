@@ -1,5 +1,6 @@
-package net.janhorak.game.ne.engine;
+package net.janhorak.game.ne.entities;
 
+import java.util.UUID;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -8,9 +9,10 @@ import javafx.scene.image.Image;
  *
  * @author Jan
  */
-public class GameSprite {
+public abstract class GameSprite {
 
     private Image image;
+    private String id;
     private double positionX;
     private double positionY;
     private double velocityX;
@@ -19,6 +21,7 @@ public class GameSprite {
     private double height;
 
     public GameSprite() {
+        id = UUID.randomUUID().toString();
         positionX = 0;
         positionY = 0;
         velocityX = 0;
@@ -67,6 +70,12 @@ public class GameSprite {
     public boolean intersects(GameSprite s) {
         return s.getBoundary().intersects(this.getBoundary());
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public abstract void executeBehavior();
 
 
 }

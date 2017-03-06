@@ -1,6 +1,5 @@
 package net.janhorak.game.ne.entities;
 
-import net.janhorak.game.ne.engine.GameSprite;
 import javafx.scene.image.Image;
 
 /**
@@ -14,4 +13,10 @@ public class MoneyBag extends GameSprite {
     public MoneyBag() {
         super.setImage(new Image(IMAGE_URL));
     }
+
+    @Override
+    public void executeBehavior() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
