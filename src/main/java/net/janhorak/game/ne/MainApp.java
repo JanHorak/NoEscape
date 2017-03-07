@@ -7,20 +7,25 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import net.janhorak.game.ne.engine.loops.ApplicationLoop;
 import net.janhorak.game.ne.engine.GameEnvironment;
+import net.janhorak.game.ne.engine.GameState;
 import net.janhorak.game.ne.engine.Renderer;
+import net.janhorak.game.ne.engine.loops.ManagementLoop;
 import net.janhorak.game.ne.engine.services.ControlManager;
 import org.apache.log4j.BasicConfigurator;
 
 public class MainApp extends Application {
 
     private Renderer renderer;
-    private ApplicationLoop applicationLoop;
+    private ManagementLoop mgnLoop;
     double lastNanoTime = System.nanoTime();
-    private ControlManager controlManager = new ControlManager();
+    private ControlManager controlManager;
+    private GameState state = GameState.STARTUP;
+    
+    
     @Override
     public void start(Stage theStage) throws Exception {
+        controlManager = new ControlManager();
         theStage.setTitle(GameEnvironment.TITLE);
 
         Group root = new Group();
@@ -31,18 +36,17 @@ public class MainApp extends Application {
         renderer = new Renderer(canvas);
         root.getChildren().add(canvas);
         
-        applicationLoop = new ApplicationLoop(controlManager, renderer, lastNanoTime);
-        
         theScene.setOnKeyPressed((KeyEvent e) -> {
             controlManager.evalInputPressed(e);
         });
-
+        
         theScene.setOnKeyReleased((KeyEvent e) -> {
             controlManager.evalInputReleased(e);
         });
         
-        applicationLoop.start();
-
+        mgnLoop = new ManagementLoop(state, controlManager, renderer, lastNanoTime);
+        mgnLoop.start();
+        ManagementLoop.tryToChangeState(GameState.MENU);
         theStage.show();
     }
 

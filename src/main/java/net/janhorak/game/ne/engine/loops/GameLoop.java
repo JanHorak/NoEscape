@@ -27,10 +27,9 @@ public class GameLoop extends AnimationTimer {
 
     Set<GameSprite> moneybagList = new HashSet<>();
 
-    public GameLoop(Renderer renderer, ControlManager controlManager, double startTime) {
+    public GameLoop(Renderer renderer, ControlManager controlManager) {
         this.renderer = renderer;
         this.controlManager = controlManager;
-        lastNanoTime = startTime;
         this.logic = new GameLogic();
 
         player.setControlManager(controlManager);
